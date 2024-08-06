@@ -1,0 +1,47 @@
+@import "../../../mixins";
+
+.buy-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+
+  tr {
+    td {
+      @include DefaultFont;
+      font-weight: bold;
+      text-align: right;
+      color: #494949;
+      position: relative;
+      padding: 4px;
+
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: nowrap;
+
+      &:first-child {
+        color: #939393;
+        font-weight: normal;
+        text-align: left;
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      a {
+        color: #025089;
+      }
+
+    }
+  }
+}
+
+.buy-info-pending {
+  @include DefaultFont;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 22px;
+  color: #ee7904;
+}

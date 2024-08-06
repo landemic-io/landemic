@@ -1,0 +1,23 @@
+@import "variables";
+
+@mixin DefaultFont {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+}
+
+@mixin LinkColor {
+  color: #025089
+}
+
+@mixin GoogleyBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-light;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+}

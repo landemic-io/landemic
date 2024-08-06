@@ -1,0 +1,19 @@
+node_modules
+.DS_Store
+api/build
+# client/build
+contract/build
+.env
+.github_key
+
+# random stuff the remote creates
+.heroku
+.npm
+.ssh
+.profile.d
+.gitconfig
+.heroku_exec_data.json
+
+# normally you wouldn't ignore this, but for remote deploying, it's easier to have it
+# rebuild it, so it doesn't get stuck on mac vs. linux dependencies
+package-lock.json

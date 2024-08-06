@@ -1,0 +1,21 @@
+@import "../../../mixins";
+
+#my-tiles-list {
+  h3 {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 20px;
+    text-align: center;
+    font-size: 24px;
+    height: auto;
+  }
+}
+#tips {
+    div {
+        padding: 16px 0;
+    }
+}

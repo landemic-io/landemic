@@ -1,0 +1,26 @@
+@import "../../variables";
+
+.drawer {
+  background-color: $bg-light;
+  border-radius: $border-radius;
+
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 15;
+  width: 300px;
+  padding: 48px 20px 20px 20px;
+  box-shadow: $box-shadow;
+  animation: slideIn 200ms;
+
+  &-back {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%) }
+  to   { transform: translateX(0); }
+}

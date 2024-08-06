@@ -1,0 +1,30 @@
+@import "../../mixins";
+
+.CheckMetamask {
+  @include DefaultFont();
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../images/metamask.png');
+  background-repeat: no-repeat;
+  background-size: 85px 85px;
+  background-position: center top;
+  padding-top: 90px;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  color: #494949;
+  animation: anim 0s 0.5s forwards;
+  visibility: hidden;
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  a {
+    color: #025089;
+  }
+}
+@keyframes anim {
+  to { visibility: visible; }
+}

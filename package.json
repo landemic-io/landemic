@@ -1,0 +1,55 @@
+{
+  "name": "landemic",
+  "description": "Syncs the smart contract with the data that is used to supply the Charts feature on Landemic",
+  "private": true,
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start-client": "cd client && NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build-client": "cd client && NODE_OPTIONS=--openssl-legacy-provider react-scripts build && cp build/index.html build/404.html",
+    "fetch-data": "cd api && node src/events.js && node src/timestamps.js && node src/codes.js && node src/currency.js",
+    "build-data": "cd api && node src/build.js",
+    "bundle-data": "cp api/build/* client/build/ && cp api/build/* client/public/",
+    "deploy-data": "git add . && git commit -m 'Updated data' && git push origin main",
+    "sync-data": "npm run fetch-data && npm run sync-data-no-fetch",
+    "sync-data-no-fetch": "npm run build-data && npm run bundle-data && npm run deploy-data"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "color": "^3.1.0",
+    "dotenv": "^16.4.5",
+    "drizzle": "^1.2.4",
+    "drizzle-react": "^1.2.0",
+    "final-form": "^4.12.0",
+    "google-maps-react": "^2.0.2",
+    "http": "^0.0.1-security",
+    "node-fetch": "^2.6.0",
+    "node-sass": "npm:sass@^1.42.1",
+    "open-location-code": "^1.0.3",
+    "query-string": "^6.4.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-final-form": "^4.1.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.0.1",
+    "request-promise": "^4.2.6",
+    "sass": "^1.42.1",
+    "truffle": "^5.0.32",
+    "truffle-contract": "^4.0.29",
+    "web3": "^1.5.2"
+  },
+  "__comment__": "https://github.com/phusion/node-sha3/issues/32#issuecomment-2243924977",
+  "overrides": {
+    "eth-lib": "0.2.8"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

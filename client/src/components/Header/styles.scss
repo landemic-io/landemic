@@ -1,0 +1,55 @@
+@import "../../mixins.scss";
+
+#alert {
+  background-color: #025089;
+  text-align: center;
+  padding: 5px 8px 8px;
+  color: white;
+}
+
+.header {
+  height: 90px;
+  background-color: #ffffff;
+  padding: 0 35px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include DefaultFont;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+  color: #494949;
+
+  a {
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #025089;
+    margin-left: 20px;
+  }
+
+  #dash {
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 20px;
+    @media only screen and (max-width: 900px)  {
+      display: none;
+    }
+  }
+
+  #menu {
+    @media only screen and (max-width: 820px)  {
+      a.telegram {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 500px)  {
+      a.twitter {
+        display: none;
+      }
+    }
+  }
+}

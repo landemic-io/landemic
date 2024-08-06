@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.927b782d.chunk.css",
+    "main.js": "/static/js/main.d2cd2e4b.chunk.js",
+    "main.js.map": "/static/js/main.d2cd2e4b.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.6237df5c.chunk.js": "/static/js/2.6237df5c.chunk.js",
+    "static/js/2.6237df5c.chunk.js.map": "/static/js/2.6237df5c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.5da9d80734d0cbef05a8d7e6a02e483a.js": "/precache-manifest.5da9d80734d0cbef05a8d7e6a02e483a.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.927b782d.chunk.css.map": "/static/css/main.927b782d.chunk.css.map",
+    "static/media/landemic-logo.svg": "/static/media/landemic-logo.1596bfd4.svg",
+    "static/media/styles.scss": "/static/media/metamask.2980f875.png"
+  }
+}

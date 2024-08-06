@@ -1,0 +1,17 @@
+.stats-table {
+
+	margin-bottom: 20px;
+
+	tr { line-height: 22px; }
+	th { height: 30px; text-align: left; }	
+	td { padding: 0 20px 0 0; }
+	td:last-child { padding-right: 0}
+	td.tileColor { width: 23px; }
+
+	.disclosures {
+		button {
+			margin: 7px 9px 0 2px;
+		}
+	}
+
+}

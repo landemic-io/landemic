@@ -1,0 +1,128 @@
+Landemic is a virtual land NFT on Ethereum available at [https://landemic.io](https://landemic.io). We've designed it to live in perpetuity, which is why we've open-sourced the web component so that you can serve the Landemic site either locally from your machine or on the web.
+
+The web component has two parts: an HTML client and a data service. You can run the full functions of Landemic from just the HTML client, but if you want the charts feature on the left to stay updated, you'll need to need to run the parallel data service. Since the volume is low, you can get by just running the data service manually, however we've set it up so that it's easy to run practically for free on Heroku.
+
+## Quickstart: Run client locally
+
+```
+cd client
+yarn global add serve
+serve -s build
+```
+
+## Maintainer notes
+
+The most likely points of failure for future maintainers, in order of when they could be a problem are:
+
+- Data syncer breaks: this could be due to an API change or rate limit from Alchemy. Trick: to check that the syncer is working, you should see a recent (<24h) commit in this repo. Also, you can open the dev console on the client, and there is a log output that says "Updated # hours/minutes ago."
+- Client doesn't build: Node 18 is being deprecated, so dependencies may have to be managed or replaced to migrate to Node 20
+- Slug doesn't compile on Heroku: see same issue above regarding Node 18
+- Client doesn't play well with MetaMask: in the dev console, you can see that there are web3 deprecation warnings, but it may be a while before MetaMask breaks backwards compatibility
+
+The most confusing aspects of the client are how it synchronizes data with the blockchain:
+
+- The Drizzle framework, which may or may not be around in the future, watches the blockchain for updates. Look at `REACT_APP_DRIZZLE_FALLBACK_URL` in `.env.development/production` as a possible suspect.
+- Check `Body.js` and see `fetchAllOwned` as the core engine for syncing. You'll notice this has parallels with the files in the `api` folder. If you are having issues, it may help to create a copy of `api/src/codes.js` or `events.js` as a console so you can directly talk to the blockchain.
+
+Another confusing aspect has to do with using Github Pages for serving and data:
+
+- At the previous hosting provider, Landemic could handle "/"-based routing in URLs. However, Github Pages doesn't have a URL writer. As a result, we use the [404 page](https://stackoverflow.com/a/60059567/210173) to fill that role.
+- It's normally not considered best practice to save cached data and build files in a repo, but doing so solves some problems for us:
+    1. It saves cycles to start from a previous event history of the contract, rather than rebuilding it every time
+    2. Having the build saved means that if for whatever reason the build fails, you'll always have a last working copy
+- There are other solutions that could make these things seem more logical, but one overriding principle has been to keep the number of moving parts as few as possible to help with futureproofing.
+
+# Running the HTML client
+
+## Build the client
+
+**Set Google Maps API key**
+
+In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY`
+
+**Set Alchemy API key**
+
+In `client/.env` set `REACT_APP_DRIZZLE_FALLBACK_URL`. See `.env.example`. This allows people who aren't connected to MetaMask to still view live blockchain content.
+
+**Build commands**
+
+```
+nvm install 18
+nvm use 18
+npm i
+npm run build-client
+```
+
+*Currently tested on an Apple M1, Sonoma 14.5*
+
+## Serve from GitHub Pages
+
+1. (optional) Commit your latest build
+2. Push your repo to your forked Github for Landemic
+2. Go to Github's **Settings > Pages**
+3. Under **Build and Deployment**, select **GitHub Actions**
+4. Visit Landemic at https://YOURUSERNAME.github.io/landemic/
+
+# Syncing data
+
+Landemic gets its data directly from the blockchain, but because there are so many transactions, 99% of that has to be cached. The tiles on the map and the charts on the left draw from this cache. Currently, the cache is served from the same place where we serve the HTML.
+
+You can synchronize with the blockchain manually per the instructions below, and you can set up a cron job to have it run from your computer at night. But if you have a laptop that sleeps at night or for whatever reason want to run it remotely, here are some instructions for running it on Heroku.
+
+Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should be able to run it on any VPC.
+
+## Running locally
+
+`npm run sync-data`
+
+## Run remotely
+
+You can run it nearly for free by creating a new app and then turning off the dyno after you do your first `git push heroku main`. To turn off the dyno, go to your app in Heroku, then Resources, click the pencil icon next to the web dyno, then flip the switch off.
+
+**Getting started**
+
+Create an app on Heroku. Then in your repo folder run:
+
+```
+heroku login
+git add remote heroku https://PATH_TO_YOUR_HEROKU_GIT
+git push heroku main
+```
+
+This should successfully create your repo, install npm modules, and build a slug, which is a compiled image of your app. If it doesn't work, you may have to troubleshoot node and npm issues, such as upgrading to node 20 or fixing compatibility issues with the dependencies in `package.json` or `package-lock.json`
+
+**Set your Github key**
+
+Go to your app, then **Settings > Config Variables**
+
+Create a key called GITHUB_KEY.
+
+Then, get your private key from GitHub then convert it to be readable by code. Here's a handy trick:
+
+1. Option-Command-i to open your developer console.
+2. Type `
+3. Paste your private key
+4. Type ` again
+5. Press Enter
+6. Right-click on the key string, then choose "Copy string as JavaScript literal"
+7. Paste it and remove ' characters at the start and end
+
+**Set your Alchemy key**
+
+The service fetches data from the blockchain through Alchemy. The requests are light enough that you can use the free tier.
+
+Create an Alchemy key, this time called ALCHEMY_KEY and add it to Heroku.
+
+**Set your Github remote**
+
+Set GITHUB_REMOTE to the git@github.com:YOUR_USERNAME/landemic.git of your new repo
+
+**Sync the data**
+
+`heroku run ". prep-remote.sh && npm run sync-data"`
+
+Since we've turned off the web dyno, the above command will spin up an instance of your previously compiled slug, fetch the latest data from the blockchain, and then publish an updated client. The slug will then be deleted.
+
+To run this on a schedule, you can then add the job via the Heroku scheduler addon. If you run it once an hour, it shouldn't use more than $1/mo. But you can even run it once a day to get it even closer to $0.
+
+The data syncer is designed to not produce data if any of the fetch-data commands fail, but if you want extra visibility, check: `heroku logs --tail --ps scheduler`

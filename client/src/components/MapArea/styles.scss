@@ -1,0 +1,93 @@
+@import "../../mixins";
+
+.map-wrapper {
+  position: relative;
+  height: 100%;
+
+  &-header {
+    display: flex;
+    margin-bottom: 20px;
+
+    @media only screen and (max-width: 600px)  {
+      margin-bottom: 5px ;
+    }
+
+    form {
+      height: 46px;
+      flex-grow: 1;
+      display: flex;
+      //margin-top: -8px;
+
+      input {
+        height: 100%;
+        flex-grow: 1;
+        box-sizing: border-box;
+        border: 1px solid #e3e3e3;
+        border-right: none;
+        outline: none;
+        @include DefaultFont;
+        color: #494949;
+        padding: 14px 20px;
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+      }
+
+      button {
+        height: 100%;
+        padding: 14px 34px;
+        box-sizing: border-box;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #f0f0f0;
+        border: 1px solid #e3e3e3;
+        @include DefaultFont;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
+        color: #494949;
+        transition: all 100ms ease-out;
+
+        &:hover {
+          background-color: #e3e3e3;
+        }
+      }
+    }
+  }
+
+  h3 {
+    @include DefaultFont;
+    font-size: 24px;
+    font-weight: bold;
+    color: #494949;
+    letter-spacing: -0.3px;
+    margin-right: 58px;
+    margin-bottom: 30px;
+  }
+
+  .map {
+    position: relative;
+    border-radius: 7px;
+    overflow: hidden;
+    transition: all 300ms ease-out;
+    min-height: 400px;
+    height: calc(100vh - 192px);
+    @media only screen and (max-width: 600px)  {
+      height: calc(100vh - 145px);
+    }
+    &.full-screen {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+  }
+
+  .google-map {
+
+    &.loading {
+      filter: grayscale(70%) blur(2px);
+    }
+  }
+}

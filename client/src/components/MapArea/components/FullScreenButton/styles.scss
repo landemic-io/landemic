@@ -1,0 +1,13 @@
+.full-screen-button {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.03);
+  border: solid 1px #e3e3e3;
+  border-radius: 2px;
+  z-index: 999;
+  padding: 8px;
+  width: 34px;
+  height: 34px;
+}

@@ -1,0 +1,46 @@
+@import "../../mixins";
+
+
+#sidebar {
+	max-width: 265px;
+	&-tabs {
+		button {
+		    @include DefaultFont;
+		    font-size: 16px;
+		    font-weight: bold;
+		    color: #494949;
+		    letter-spacing: -0.3px;
+		    margin-bottom: 20px;
+		    margin-right: 25px;
+		    margin-left: 15px;
+		    height: 46px;
+		    line-height: 1;
+			@include LinkColor;
+		    background-color: transparent;
+		    text-decoration: underline;
+		    outline: none;
+		    cursor: pointer;
+		}
+
+		button.selected {
+			color: #494949;
+			text-decoration: none;
+			font-weight: bold;
+			cursor: default;
+		}
+	}
+	&-body {
+	    position: relative;
+	    border-radius: 6px;
+	    border: solid 1px #e3e3e3;
+	    background-color: #ffffff;
+	    padding: 28px;
+	    padding-right: 5px;
+	    min-height: 400px;
+	    height: calc(100vh - 192px);
+	    overflow: auto;
+	}
+	@media only screen and (max-width: 820px)  {
+		display: none;
+	}	
+}

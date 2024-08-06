@@ -1,0 +1,78 @@
+@import "../../../mixins";
+@import "../../../variables";
+
+.change-price-form {
+
+  label {
+    @include DefaultFont;
+    font-size: 16px;
+    font-weight: 700;
+    color: $text-dark;
+    margin-right: 20px;
+  }
+
+  input {
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: solid 1px #e5e5e5;
+    background-color: #f3f3f3;
+    font-size: 20px;
+    color: $text-dark;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    margin-right: 20px;
+  }
+
+  p {
+    @include DefaultFont;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 22px;
+
+    &.invalid {
+      color: #ee7904;
+    }
+
+  }
+
+  button, a {
+    width: 160px;
+    height: 50px;
+
+    background-color: #025089;
+
+    @include DefaultFont;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #ffffff;
+
+    &:disabled {
+      background-color: #717171;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include GoogleyBox;
+    color: #025089;
+    border: 1px solid #025089;
+  }
+
+  &-buttons {
+    display: flex;
+    margin-top: 20px;
+
+    button[type=submit] {
+      margin-right: 10px;
+    }
+  }
+}

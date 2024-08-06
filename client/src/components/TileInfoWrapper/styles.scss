@@ -1,0 +1,68 @@
+@import "../../mixins";
+
+#info {
+  width: 206px;
+  height: 135px;
+
+  div, a {
+    width: 103px;
+    height: 17px;
+
+    display: inline-block;
+    margin-bottom: 7px;
+
+    @include DefaultFont;
+    letter-spacing: -0.1px;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .key {
+    color: #939393;
+  }
+  .value {
+    font-weight: bold;
+    text-align: right;
+    color: #494949;
+  }
+  .pluslink {
+    font-weight: bold;
+    text-align: right;
+    color: #025089;
+  }
+}
+
+#buttons {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  .button-footnote {
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  button, a {
+    width: 160px;
+    height: 50px;
+
+    background-color: #025089;
+
+    @include DefaultFont;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include GoogleyBox;
+    background-color: #025089;
+    border-radius: 7px;
+  }
+}
