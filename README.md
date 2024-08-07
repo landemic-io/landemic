@@ -95,11 +95,9 @@ Then, turn off the web dyno, since we only need the Scheduler. Click on Resource
 
 **Set your Github key**
 
-Go to your app, then **Settings > Config Variables**
+The syncer stores its cache on GitHub pages, alongside our repo. See maintainer note above for why. To configure remote updating, go to your app, then **Settings > Config Variables**
 
-Create a key called GITHUB_KEY.
-
-Then, get your private key from GitHub then convert it to be readable by code. Here's a handy trick:
+Create a key called `GITHUB_KEY`. Then, get your private key from GitHub then convert it to be readable by code. Here's a handy trick:
 
 1. Option-Command-i to open your developer console.
 2. Type `
@@ -107,17 +105,19 @@ Then, get your private key from GitHub then convert it to be readable by code. H
 4. Type ` again
 5. Press Enter
 6. Right-click on the key string, then choose "Copy string as JavaScript literal"
-7. Paste it and remove ' characters at the start and end
+7. Remove the ' characters at the start and end
+
+Then paste the key into the value field.
+
+**Set your Github remote**
+
+Set `GITHUB_REMOTE` to the `git@github.com:YOUR_USERNAME/landemic.git` of your new repo
 
 **Set your Alchemy key**
 
 The service fetches data from the blockchain through Alchemy. The requests are light enough that you can use the free tier.
 
 Create an Alchemy key, this time called ALCHEMY_KEY and add it to Heroku.
-
-**Set your Github remote**
-
-Set GITHUB_REMOTE to the git@github.com:YOUR_USERNAME/landemic.git of your new repo
 
 **Sync the data**
 
