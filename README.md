@@ -1,6 +1,6 @@
 Landemic is a virtual land NFT on Ethereum available at [https://landemic.io](https://landemic.io). We've designed it to live in perpetuity, which is why we've open-sourced the web component so that you can serve the Landemic site either locally from your machine or on the web.
 
-The web component has two parts: an HTML client and a data service. You can run the full functions of Landemic from just the HTML client, but if you want the charts feature on the left to stay updated, you'll need to need to run the parallel data service. Since the volume is low, you can get by just running the data service manually, however we've set it up so that it's easy to run practically for free on Heroku.
+The web component has two parts: an HTML client and a data service. You can run the full functions of Landemic from just the HTML client, but if you want the charts feature on the left, and the cache of tiles on the maps, to stay updated, you'll need to need to run the parallel data service. Since the volume is low, you can get by just running the data service manually, however we've set it up so that it's easy to run practically for free on Heroku.
 
 ## Quickstart: Run client locally
 
@@ -38,9 +38,9 @@ Another confusing aspect has to do with using Github Pages for serving and data:
 
 **Set Google Maps API key**
 
-In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY`
+In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY` for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key). Otherwise, the client map will run in "Developer Mode."
 
-**Set Alchemy API key**
+**(Optional) Set Alchemy API key**
 
 In `client/.env` set `REACT_APP_DRIZZLE_FALLBACK_URL`. See `.env.example`. This allows people who aren't connected to MetaMask to still view live blockchain content.
 
@@ -69,7 +69,7 @@ Landemic gets its data directly from the blockchain, but because there are so ma
 
 You can synchronize with the blockchain manually per the instructions below, and you can set up a cron job to have it run from your computer at night. But if you have a laptop that sleeps at night or for whatever reason want to run it remotely, here are some instructions for running it on Heroku.
 
-Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should be able to run it on any VPC.
+Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should be able to run it on any VPC, not just Heroku's.
 
 ## Running locally
 
@@ -77,7 +77,7 @@ Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should 
 
 ## Run remotely
 
-You can run it nearly for free by creating a new app and then turning off the dyno after you do your first `git push heroku main`. To turn off the dyno, go to your app in Heroku, then Resources, click the pencil icon next to the web dyno, then flip the switch off.
+You can run that data syncer nearly for free on Heroku by using only the [Scheduler add-on](https://elements.heroku.com/addons/scheduler). The syncer can run however frequently you want (once-a-day, once-an-hour (current)), and Heroku will only charge you one-off dyno fees for the duration of each run.
 
 **Getting started**
 
@@ -90,6 +90,8 @@ git push heroku main
 ```
 
 This should successfully create your repo, install npm modules, and build a slug, which is a compiled image of your app. If it doesn't work, you may have to troubleshoot node and npm issues, such as upgrading to node 20 or fixing compatibility issues with the dependencies in `package.json` or `package-lock.json`
+
+Then, turn off the web dyno, since we only need the Scheduler. Click on Resources, then click the pencil icon next to the web dyno, and then flip the switch off. This way you'll only be charged for the one-off dyno.
 
 **Set your Github key**
 
@@ -123,6 +125,6 @@ Set GITHUB_REMOTE to the git@github.com:YOUR_USERNAME/landemic.git of your new r
 
 Since we've turned off the web dyno, the above command will spin up an instance of your previously compiled slug, fetch the latest data from the blockchain, and then publish an updated client. The slug will then be deleted.
 
-To run this on a schedule, you can then add the job via the Heroku scheduler addon. If you run it once an hour, it shouldn't use more than $1/mo. But you can even run it once a day to get it even closer to $0.
+To run this on a schedule, you can then add the job via the Heroku Scheduler add-on. If you run it once an hour, it shouldn't use more than $1/mo. But you can even run it once a day to get it even closer to $0.
 
-The data syncer is designed to not produce data if any of the fetch-data commands fail, but if you want extra visibility, check: `heroku logs --tail --ps scheduler`
+The data syncer is designed fails quetly if any of the fetch-data commands fail. To get extra visibility, run: `heroku logs --tail --ps scheduler`. Normally `heroku logs` would just work, but we don't have a standing dyno to query.
