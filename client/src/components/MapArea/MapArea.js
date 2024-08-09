@@ -601,6 +601,10 @@ export class MapArea extends Component {
     }
 }
 
+var apiKey = 'AIzaSyCk3em0Xd-WvCzKMW7HgEklrNCfGoKlKfg'
+if (process.env.REACT_APP_GOOGLE_MAPS_KEY)
+    apiKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
+
 export default withRouter(GoogleApiWrapper({
-    apiKey: ('AIzaSyCk3em0Xd-WvCzKMW7HgEklrNCfGoKlKfg')
+    apiKey: (apiKey)
 })(MapArea));

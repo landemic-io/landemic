@@ -1,6 +1,6 @@
 Landemic is a virtual land NFT on Ethereum available at [https://landemic.io](https://landemic.io). We've designed it to live in perpetuity, which is why we've open-sourced the web component so that you can serve the Landemic site either locally from your machine or on the web.
 
-The web component has two parts: an HTML client and a data service. You can run the full functions of Landemic from just the HTML client, but if you want the charts feature on the left, and the cache of tiles on the maps, to stay updated, you'll need to need to run the parallel data service. Since the volume is low, you can get by just running the data service manually, however we've set it up so that it's easy to run practically for free on Heroku.
+The web component has two parts: an HTML client and a data service. You can run the full functions of Landemic from just the HTML client, but if you want the charts feature on the left and the cache of tiles on the maps to stay updated, you'll need to need to run the parallel data service. Since the volume is low, you can get by just running the data service manually, however we've set it up so that it's easy to run practically for free on Heroku.
 
 ## Quickstart: Run client locally
 
@@ -14,7 +14,7 @@ serve -s build
 
 The most likely points of failure for future maintainers, in order of when they could be a problem are:
 
-- Data syncer breaks: this could be due to an API change or rate limit from Alchemy. Trick: to check that the syncer is working, you should see a recent (<24h) commit in this repo. Also, you can open the dev console on the client, and there is a log output that says "Updated # hours/minutes ago."
+- Data syncer breaks: this could be due to an API change or rate limit from Alchemy. Trick: to check that the syncer is working, you should see a recent (<24h) commit in this repo. Also, you can open the browser dev console on the client, and there is a log output that says "Updated # hours/minutes ago."
 - Client doesn't build: Node 18 is being deprecated, so dependencies may have to be managed or replaced to migrate to Node 20
 - Slug doesn't compile on Heroku: see same issue above regarding Node 18
 - Client doesn't play well with MetaMask: in the dev console, you can see that there are web3 deprecation warnings, but it may be a while before MetaMask breaks backwards compatibility
@@ -28,8 +28,8 @@ Another confusing aspect has to do with using Github Pages for serving and data:
 
 - At the previous hosting provider, Landemic could handle "/"-based routing in URLs. However, Github Pages doesn't have a URL writer. As a result, we use the [404 page](https://stackoverflow.com/a/60059567/210173) to fill that role.
 - It's normally not considered best practice to save cached data and build files in a repo, but doing so solves some problems for us:
-    1. It saves cycles to start from a previous event history of the contract, rather than rebuilding it every time
-    2. Having the build saved means that if for whatever reason the build fails, you'll always have a last working copy
+    1. It saves cycles to start from a previous event history of the contract, rather than rebuilding it every time.
+    2. Having the build saved means that if for whatever reason the build fails, you'll always have a last working copy.
 - There are other solutions that could make these things seem more logical, but one overriding principle has been to keep the number of moving parts as few as possible to help with futureproofing.
 
 # Running the HTML client
@@ -38,7 +38,7 @@ Another confusing aspect has to do with using Github Pages for serving and data:
 
 **Set Google Maps API key**
 
-In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY` for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key). Otherwise, the client map will run in "Developer Mode."
+In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY` for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key). We currently hard-code a default API key, but it is domain-gated, so it will only run locally. If you build the client and host it somewhere, Google Maps will say it's running in "Developer Mode."
 
 **(Optional) Set Alchemy API key**
 
@@ -72,6 +72,8 @@ You can synchronize with the blockchain manually per the instructions below, and
 Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should be able to run it on any VPC, not just Heroku's.
 
 ## Running locally
+
+Follow the steps above for adding your Alchemy key, then run:
 
 `npm run sync-data`
 
