@@ -38,7 +38,7 @@ Another confusing aspect has to do with using Github Pages for serving and data:
 
 **Set Google Maps API key**
 
-In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY` for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key). We currently hard-code a default API key, but it is domain-gated, so it will only run locally. If you build the client and host it somewhere, Google Maps will say it's running in "Developer Mode."
+In `client/.env` set `REACT_APP_GOOGLE_MAPS_KEY` for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key). We currently hard-code a default API key, but it is domain-gated, so it will only run locally. If you build the client and host it somewhere, Google Maps will return an error.
 
 **(Optional) Set Alchemy API key**
 
