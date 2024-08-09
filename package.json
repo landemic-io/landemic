@@ -41,7 +41,8 @@
   },
   "__comment__": "https://github.com/phusion/node-sha3/issues/32#issuecomment-2243924977",
   "overrides": {
-    "eth-lib": "0.2.8"
+    "eth-lib": "0.2.8",
+    "fsevents": "npm:dry-uninstall"
   },
   "eslintConfig": {
     "extends": "react-app"
