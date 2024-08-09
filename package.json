@@ -35,7 +35,6 @@
     "react-scripts": "^3.0.1",
     "request-promise": "^4.2.6",
     "sass": "^1.42.1",
-    "truffle": "^5.0.32",
     "truffle-contract": "^4.0.29",
     "web3": "^1.5.2"
   },
