@@ -40,10 +40,8 @@
     "web3": "^1.5.2"
   },
   "__comment1__": "https://github.com/phusion/node-sha3/issues/32#issuecomment-2243924977",
-  "__comment2__": "https://stackoverflow.com/questions/36758157/how-can-i-forcibly-exclude-a-nested-dependency-for-npm",
   "overrides": {
-    "eth-lib": "0.2.8",
-    "fsevents": "../_EXCLUDED_"
+    "eth-lib": "0.2.8"
   },
   "eslintConfig": {
     "extends": "react-app"
