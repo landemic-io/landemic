@@ -97,13 +97,13 @@ class App extends PureComponent {
       this.setState({ selectedCodes: codes })
     }
 
-    fetch('/contract-data.json')
+    fetch('./contract-data.json')
     .then(response => response.json())
     .then(data => {
       this.addToDataJSON(data)
     })
 
-    fetch('/ethUsd.json')
+    fetch('./ethUsd.json')
     .then(response => response.json())
     .then(data => {
       console.log('Updated ' + Helper.timeSince(new Date(data['updated'])) + ' ago')

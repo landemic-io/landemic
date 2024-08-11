@@ -63,11 +63,10 @@ npm run build-client
 2. Go to **Settings > Pages**
 3. Under **Build and Deployment** select **GitHub Actions**
 4. Then select **Actions** from the tab bar
-5. Click **Enable Actions on this repository**
-6. If serving from a subdomain (default), set `"homepage" : "https://YOURUSERNAME.github.io/landemic"` in `package.json`
-7. Commit your latest build
-8. Push your repo
-9. Visit Landemic at https://YOURUSERNAME.github.io/landemic/
+5. If serving from a subdomain (default), set `"homepage" : "https://YOURUSERNAME.github.io/landemic"` in `client/package.json`
+6. Commit your latest build
+7. Push your repo
+8. Visit Landemic at https://YOURUSERNAME.github.io/landemic/
 
 # Syncing data
 
