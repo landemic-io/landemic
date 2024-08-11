@@ -78,9 +78,11 @@ Note: There aren't any IaC or Heroku-specific hooks in this repo, so you should 
 
 ## Running locally
 
-Follow the steps above for adding your Alchemy key, then run:
+Set your Alchemy key per `/.env-example`
 
 `npm run sync-data`
+
+Run `git status` to see the results of your fresh data.
 
 ## Run remotely
 
