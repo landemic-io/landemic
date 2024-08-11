@@ -94,13 +94,13 @@ Create an app on Heroku. Then in your repo folder run:
 
 ```
 heroku login
-git add remote heroku https://PATH_TO_YOUR_HEROKU_GIT
+heroku git:remote -a NAME_OF_APP
 git push heroku main
 ```
 
 This should successfully create your repo, install npm modules, and build a slug, which is a compiled image of your app. If it doesn't work, you may have to troubleshoot node and npm issues, such as upgrading to node 20 or fixing compatibility issues with the dependencies in `package.json` or `package-lock.json`
 
-Then, turn off the web dyno, since we only need the Scheduler. Click on Resources, then click the pencil icon next to the web dyno, and then flip the switch off. This way you'll only be charged for the one-off dyno.
+Then, turn off the web dyno, since we only need the Scheduler. Click on **Resources**, then click the pencil icon next to the web dyno, and then flip the switch off. This way you'll only be charged for the one-off dyno.
 
 **Set your Github key**
 
@@ -126,7 +126,7 @@ Set `GITHUB_REMOTE` to the `git@github.com:YOUR_USERNAME/landemic.git` of your n
 
 The service fetches data from the blockchain through Alchemy. The requests are light enough that you can use the free tier.
 
-Create an Alchemy key, this time called ALCHEMY_KEY and add it to Heroku.
+Create an Alchemy key, this time called `ALCHEMY_KEY` and add it to Heroku.
 
 **Sync the data**
 
