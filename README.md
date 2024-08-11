@@ -46,6 +46,8 @@ In `client/.env` set `REACT_APP_DRIZZLE_FALLBACK_URL`. See `.env.example`. This 
 
 **Build commands**
 
+*Run these in the `landemic` folder, not `client`*
+
 ```
 nvm install 18
 nvm use 18
@@ -57,11 +59,14 @@ npm run build-client
 
 ## Serve from GitHub Pages
 
-1. (optional) Commit your latest build
-2. Push your repo to your forked Github for Landemic
+1. Fork this repo
 2. Go to Github's **Settings > Pages**
 3. Under **Build and Deployment**, select **GitHub Actions**
-4. Visit Landemic at https://YOURUSERNAME.github.io/landemic/
+4. Click **Actions** and **Enable Actions on this repository**
+5. If serving from a subdomain (default), set `"homepage" : "https://YOURUSERNAME.github.io/landemic"` in `package.json`
+6. Commit your latest build
+4. Push your repo
+6. Visit Landemic at https://YOURUSERNAME.github.io/landemic/
 
 # Syncing data
 
