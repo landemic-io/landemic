@@ -36,7 +36,7 @@ class Header extends Component {
 
 		    <Link
 		      link={'https://twitter.com/landemic/'}
-		      title={'Twitter'} className="twitter"
+		      title={'𝕏'} className="twitter"
 		    />
 
 		    <Link
