@@ -137,3 +137,5 @@ Since we've turned off the web dyno, the above command will spin up an instance 
 To run this on a schedule, you can then add the job via the Heroku Scheduler add-on. If you run it once an hour, it shouldn't use more than $1/mo. But you can even run it once a day to get it even closer to $0.
 
 The data syncer is designed fails quetly if any of the fetch-data commands fail. To get extra visibility, run: `heroku logs --tail --ps scheduler`. Normally `heroku logs` would just work, but we don't have a standing dyno to query.
+
+If you get JavaScript memory errors, you may have to add `NODE_OPTIONS` = `--max_old_space_size=2560`. [source](https://stackoverflow.com/a/72296460/210173)
